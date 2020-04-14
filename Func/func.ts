@@ -41,28 +41,80 @@ async function chartIt() {
 }
 */
 
-getData();
+getSteamData();
 
-async function getData() {
-  const xs = [];
-  const ys = [];
+async function getSteamData() {
+  const p = [];
+  const t = [];
+  const svl = [];
+  const svg = [];
+  const iEl = [];
+  const iEg = [];
+  const EtL = [];
+  const V = [];
+  const EtG = [];
+  const enL = [];
+  const enG = [];
 
   const response = await fetch('steam-table.csv');
   const data = await response.text();
-  console.log(data);
-  const table = data.split('\n').slice(1); // REview about regular exopressions.//Now it is time to use the slice function that works as follows.
-  //console.log(rows);
+  const table = data.split('\n').slice(1);
+  /*var steamTable = table.map(function (rows) {
+    return parseFloat(rows)
+  });
+  console.log(steamTable);*/
+  //console.log(table);
   table.forEach((row) => {
     const column = row.split(',');
-    const year = column[0];
-    xs.push(year);
-    const temp = column[1];
-    ys.push(parseFloat(temp) + 14);
+    const pressure = column[0]; // bar
+    const temp = column[1]; // Celsius
+    const specificVolumenLiquid = column[2]; // to define
+    const specificVolumenGas = column[3]; // to define
+    const internalEnergyLiquid = column[4];
+    const internalEnergyGas = column[5];
+    const EnthalpyLiquid = column[6];
+    const vaporitization = column[7];
+    const EnthalpyGas = column[8];
+    const entropyLiquid = column[9];
+    const entropyGas = column[10];
 
-    //console.log(year, temp);
+    p.push(parseFloat(pressure));
+    t.push(parseFloat(temp));
+    svl.push(parseFloat(specificVolumenLiquid));
+    svg.push(parseFloat(specificVolumenGas));
+    iEl.push(parseFloat(internalEnergyLiquid));
+    iEg.push(parseFloat(internalEnergyGas));
+    EtL.push(parseFloat(EnthalpyLiquid));
+    V.push(parseFloat(vaporitization));
+    EtG.push(parseFloat(EnthalpyGas));
+    enL.push(parseFloat(entropyLiquid));
+    enG.push(parseFloat(entropyGas));
+
+    console.log(
+      pressure,
+      temp,
+      specificVolumenLiquid,
+      specificVolumenGas,
+      internalEnergyLiquid,
+      internalEnergyGas,
+      EnthalpyLiquid,
+      vaporitization,
+      EnthalpyGas,
+      entropyLiquid,
+      entropyGas
+    );
   });
   return {
-    xs,
-    ys,
+    p,
+    t,
+    svl,
+    svg,
+    iEl,
+    iEg,
+    EtL,
+    V,
+    EtG,
+    enL,
+    enG,
   };
 }
