@@ -1,3 +1,33 @@
-p {
-    color: red;
+* {
+    padding: 0%;
+    margin: 0%;
+
+}
+
+.bodyGrid {
+    display: grid;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: stretch;
+    grid-template-columns: 99%;
+    grid-template-rows: 40% auto 200px;
+}
+
+.titleAndNav {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 40% 50% 10%;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.title {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.graph {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }

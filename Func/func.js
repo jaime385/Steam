@@ -1,44 +1,38 @@
 console.log('hellow');
-/*chartIt();
-
-
+chartIt();
 async function chartIt() {
-  var data = [];
-  data = await getData();
-
-  // Chart.js graph example, taken from the documentation of the framework.
-  const ctx = document.getElementById('chart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: data.xs, // I can do this because here is supose to be an array.
-      datasets: [
-        {
-          label: 'Global average temperature',
-          data: data.ys,
-          backgroundColor: 'rgba(255, 99, 132, 0)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1,
+    let data = await getSteamData();
+    const ctx = document.getElementById('chart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.p,
+            datasets: [
+                {
+                    label: `Graph selected.`,
+                    data: data.t,
+                    backgroundColor: 'rgba(16, 52, 165, 0)',
+                    borderColor: 'rgba(16, 52, 165, 1)',
+                    borderWidth: 1,
+                },
+            ],
         },
-      ],
-    },
-    options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: false, // This is a useful thing to remember.
-              callback: function (value, index, values) {
-                return value + '°';
-              },
+        options: {
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            beginAtZero: false,
+                            callback: function (value, index, values) {
+                                return value + '°';
+                            },
+                        },
+                    },
+                ],
             },
-          },
-        ],
-      },
-    },
-  });
+        },
+    });
 }
-*/
 getSteamData();
 async function getSteamData() {
     const p = [];

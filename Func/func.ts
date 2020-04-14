@@ -1,24 +1,21 @@
 console.log('hellow');
 
-/*chartIt();
-
+chartIt();
 
 async function chartIt() {
-  var data = [];
-  data = await getData();
+  let data = await getSteamData();
 
-  // Chart.js graph example, taken from the documentation of the framework.
   const ctx = document.getElementById('chart').getContext('2d');
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: data.xs, // I can do this because here is supose to be an array.
+      labels: data.p,
       datasets: [
         {
-          label: 'Global average temperature',
-          data: data.ys,
-          backgroundColor: 'rgba(255, 99, 132, 0)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          label: `Graph selected.`,
+          data: data.t,
+          backgroundColor: 'rgba(16, 52, 165, 0)',
+          borderColor: 'rgba(16, 52, 165, 1)',
           borderWidth: 1,
         },
       ],
@@ -28,7 +25,7 @@ async function chartIt() {
         yAxes: [
           {
             ticks: {
-              beginAtZero: false, // This is a useful thing to remember.
+              beginAtZero: false,
               callback: function (value, index, values) {
                 return value + '°';
               },
@@ -39,7 +36,6 @@ async function chartIt() {
     },
   });
 }
-*/
 
 getSteamData();
 
