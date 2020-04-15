@@ -1,39 +1,5 @@
 console.log('hellow');
-chartIt();
-async function chartIt() {
-    let data = await getSteamData();
-    const ctx = document.getElementById('chart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: data.p,
-            datasets: [
-                {
-                    label: `Graph selected.`,
-                    data: data.t,
-                    backgroundColor: 'rgba(16, 52, 165, 0)',
-                    borderColor: 'rgba(16, 52, 165, 1)',
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            beginAtZero: false,
-                            callback: function (value, index, values) {
-                                return value + '°';
-                            },
-                        },
-                    },
-                ],
-            },
-        },
-    });
-}
-getSteamData();
+//getSteamData();
 async function getSteamData() {
     const p = [];
     const t = [];
@@ -58,13 +24,13 @@ async function getSteamData() {
         const column = row.split(',');
         const pressure = column[0]; // bar
         const temp = column[1]; // Celsius
-        const specificVolumenLiquid = column[2]; // to define
-        const specificVolumenGas = column[3]; // to define
-        const internalEnergyLiquid = column[4];
-        const internalEnergyGas = column[5];
-        const EnthalpyLiquid = column[6];
+        const specificVolumenLiquid = column[2]; //m3 / kg
+        const specificVolumenGas = column[3]; // m3 / kg
+        const internalEnergyLiquid = column[4]; // kK / kg
+        const internalEnergyGas = column[5]; // kJ / kg
+        const EnthalpyLiquid = column[6]; // kJ / kg
         const vaporitization = column[7];
-        const EnthalpyGas = column[8];
+        const EnthalpyGas = column[8]; // kj / kg
         const entropyLiquid = column[9];
         const entropyGas = column[10];
         p.push(parseFloat(pressure));
@@ -78,7 +44,19 @@ async function getSteamData() {
         EtG.push(parseFloat(EnthalpyGas));
         enL.push(parseFloat(entropyLiquid));
         enG.push(parseFloat(entropyGas));
-        console.log(pressure, temp, specificVolumenLiquid, specificVolumenGas, internalEnergyLiquid, internalEnergyGas, EnthalpyLiquid, vaporitization, EnthalpyGas, entropyLiquid, entropyGas);
+        /*console.log(
+          pressure,
+          temp,
+          specificVolumenLiquid,
+          specificVolumenGas,
+          internalEnergyLiquid,
+          internalEnergyGas,
+          EnthalpyLiquid,
+          vaporitization,
+          EnthalpyGas,
+          entropyLiquid,
+          entropyGas
+        );*/
     });
     return {
         p,
@@ -93,4 +71,50 @@ async function getSteamData() {
         enL,
         enG,
     };
+}
+function myFunction() {
+    const pcheck = document.getElementById('pressure');
+    var isChecked = pcheck.checked;
+    chartIt();
+    async function chartIt() {
+        let data = await getSteamData();
+        var yAxis = data.t;
+        if (isChecked == true) {
+            console.log('The checkbox is checked');
+            var xAxis = data.p;
+        }
+        else {
+            var xAxis = data.svg;
+        }
+        const ctx = document.getElementById('chart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: xAxis,
+                datasets: [
+                    {
+                        label: `Graph selected.`,
+                        data: yAxis,
+                        backgroundColor: 'rgba(16, 52, 165, 0)',
+                        borderColor: 'rgba(16, 52, 165, 0.7)',
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: false,
+                                callback: function (value, index, values) {
+                                    return value + '°';
+                                },
+                            },
+                        },
+                    ],
+                },
+            },
+        });
+    }
 }
