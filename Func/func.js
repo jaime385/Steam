@@ -13,11 +13,6 @@ async function getSteamData() {
     const response = await fetch('steam-table.csv');
     const data = await response.text();
     const table = data.split('\n').slice(1);
-    /*var steamTable = table.map(function (rows) {
-      return parseFloat(rows)
-    });
-    console.log(steamTable);*/
-    //console.log(table);
     table.forEach((row) => {
         const column = row.split(',');
         const pressure = column[0]; // bar
@@ -42,19 +37,6 @@ async function getSteamData() {
         EtG.push(parseFloat(EnthalpyGas));
         enL.push(parseFloat(entropyLiquid));
         enG.push(parseFloat(entropyGas));
-        /*console.log(
-          pressure,
-          temp,
-          specificVolumenLiquid,
-          specificVolumenGas,
-          internalEnergyLiquid,
-          internalEnergyGas,
-          EnthalpyLiquid,
-          vaporitization,
-          EnthalpyGas,
-          entropyLiquid,
-          entropyGas
-        );*/
     });
     return {
         p,
@@ -71,22 +53,30 @@ async function getSteamData() {
     };
 }
 function myFunction() {
-    const pcheck = document.getElementById('pressure');
-    var isChecked = pcheck.checked;
     chartIt();
     async function chartIt() {
         let data = await getSteamData();
-        var yAxis = data.t;
+        //X axis.
         var dataListInput = document.getElementById('xAxisInput').value;
         console.log(dataListInput);
         if (dataListInput == 'Vaporization') {
             console.log('Vaporization selected');
             var xAxis = data.V;
         }
-        if (isChecked == true) {
-            console.log('The checkbox is checked');
+        if (dataListInput == 'Pressure') {
+            console.log('Pressure selected');
             var xAxis = data.p;
         }
+        if (dataListInput == 'Gas Enthalpy') {
+            console.log('Gas Enthalpy selected');
+            var xAxis = data.EtG;
+        }
+        if (dataListInput == 'Liquid Enthalpy') {
+            console.log('Liquid Enthalpy selected');
+            var xAxis = data.EtL;
+        }
+        //Y axis
+        var yAxis = data.t;
         const ctx = document.getElementById('chart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'line',

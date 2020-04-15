@@ -21,6 +21,7 @@
 .titleAndNav {
   display: -ms-grid;
   display: grid;
+  place-items: center center;
   -ms-grid-columns: 100%;
       grid-template-columns: 100%;
   -ms-grid-rows: 40% 50% 10%;
@@ -42,6 +43,15 @@
   grid-row: 2/3;
 }
 
+.plotButton {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+}
+
 .graph {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
@@ -49,5 +59,39 @@
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / 3;
+}
+
+.axisInputs {
+  display: -ms-grid;
+  display: grid;
+  place-items: center center;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: (1fr)[2];
+      grid-template-rows: repeat(2, 1fr);
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / 4;
+}
+
+.xx {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.yy {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
 }
 /*# sourceMappingURL=style.css.map */

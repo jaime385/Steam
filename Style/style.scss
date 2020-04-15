@@ -16,6 +16,7 @@
 
 .titleAndNav {
     display: grid;
+    place-items: center center;
     grid-template-columns: 100%;
     grid-template-rows: 40% 50% 10%;
     grid-column: 1 / 2;
@@ -27,7 +28,31 @@
     grid-row: 2/3;
 }
 
+.plotButton {
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
 .graph {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
+}
+
+.axisInputs {
+    display: grid;
+    place-items: center center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.xx {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.yy {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
 }

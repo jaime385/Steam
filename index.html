@@ -15,25 +15,35 @@
         <div class="titleAndNav">
             <div class="title">
                 <h1>This is my Armstrong's steam table app.</h1>
-                <br>
-                <input type="button" id="myBtn" onclick="myFunction()" value="Plot">
-                <label><input type="checkbox" name="PressureCheck" value="value" id="pressure">Pressure</label>
-                <br>
-
+            </div>
+            <div class="plotButton">
+                <label>Press to plot: <input type="button" id="myBtn" onclick="myFunction()" value="Plot"></label>
             </div>
         </div>
         <div class="graph">
             <canvas id="chart"></canvas>
         </div>
-        <input list="xAxis" id="xAxisInput">
-        <datalist id="xAxis">
-            <option value="Pressure">
-            <option value="Temperature">
-            <option value="Vaporization">
-            <option value="Liquid Enthalpy">
-        </datalist>
+        <div class="axisInputs">
+            <div class="xx">
+                <label>X axis data: <input list="xAxis" id="xAxisInput"></label>
+                <datalist id="xAxis">
+                    <option value="Pressure">
+                    <option value="Vaporization">
+                    <option value="Gas Enthalpy">
+                    <option value="Liquid Enthalpy">
+                </datalist>
+            </div>
+            <div class="yy">
+                <label>Y axis data: <input list="yAxis" id="yAxisInput"></label>
+                <datalist id="yAxis">
+                    <option value="Pressure">
+                    <option value="Vaporization">
+                    <option value="Gas Enthalpy">
+                    <option value="Liquid Enthalpy">
+                </datalist>
+            </div>
+        </div>
     </div>
-
     <script src="Func/func.js"></script>
 </body>
 
