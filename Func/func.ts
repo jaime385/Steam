@@ -1,7 +1,3 @@
-console.log('hellow');
-
-//getSteamData();
-
 async function getSteamData() {
   const p = [];
   const t = [];
@@ -86,11 +82,16 @@ function myFunction() {
   async function chartIt() {
     let data = await getSteamData();
     var yAxis = data.t;
+
+    var dataListInput = document.getElementById('xAxisInput').value;
+    console.log(dataListInput);
+    if (dataListInput == 'Vaporization') {
+      console.log('Vaporization selected');
+      var xAxis = data.V;
+    }
     if (isChecked == true) {
       console.log('The checkbox is checked');
       var xAxis = data.p;
-    } else {
-      var xAxis = data.svg;
     }
 
     const ctx = document.getElementById('chart').getContext('2d');
