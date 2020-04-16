@@ -63,6 +63,10 @@ function myFunction() {
     //X axis.
     var dataListInput = document.getElementById('xAxisInput').value;
     console.log(dataListInput);
+    if (dataListInput == 'Temperature') {
+      console.log('Temperature selected');
+      var xAxis = data.t;
+    }
     if (dataListInput == 'Vaporization') {
       console.log('Vaporization selected');
       var xAxis = data.V;
@@ -79,8 +83,30 @@ function myFunction() {
       console.log('Liquid Enthalpy selected');
       var xAxis = data.EtL;
     }
+
     //Y axis
-    var yAxis = data.t;
+    var dataListInputY = document.getElementById('yAxisInput').value;
+    if (dataListInputY == 'Temperature') {
+      console.log('Y axis with temperature');
+      var yAxis = data.t;
+    }
+    if (dataListInputY == 'Pressure') {
+      console.log('Y axis with Pressure');
+      var yAxis = data.p;
+    }
+    if (dataListInputY == 'Vaporization') {
+      console.log('Y axis with vaporization');
+      var yAxis = data.V;
+    }
+    if (dataListInputY == 'Gas Enthalpy') {
+      console.log('Y axis with gas enthalpy');
+      var yAxis = data.EtG;
+    }
+    if (dataListInputY == 'Liquid Enthalpy') {
+      console.log('Y axis Enthalpy selected');
+      var yAxis = data.EtL;
+    }
+
 
     const ctx = document.getElementById('chart').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -89,7 +115,7 @@ function myFunction() {
         labels: xAxis,
         datasets: [
           {
-            label: `Graph selected.`,
+            label: 'Graph',
             data: yAxis,
             backgroundColor: 'rgba(16, 52, 165, 0)',
             borderColor: 'rgba(16, 52, 165, 0.7)',
@@ -104,13 +130,76 @@ function myFunction() {
               ticks: {
                 beginAtZero: false,
                 callback: function (value, index, values) {
-                  return value + '°';
+                  return value;
                 },
               },
             },
           ],
+          xAxes: [
+            {
+              ticks: {
+                fontSize: 8,
+                fontColor: 'yellowgreen',
+                min: 0,
+                stepSize: 1,
+              },
+              barPercentage: 0.9,
+              maxBarThickness: 60,
+              minBarThickness: 8,
+            },
+          ],
         },
+        legend: {
+          display: true,
+          labels: {
+              //fontColor: 'yellowgreen',
+              fontSize: 14
+          }
       },
     });
   }
 }
+/*
+options: {
+  scales: {
+      yAxes: [{
+          ticks: {
+              beginAtZero: true,
+              fontSize: 14,
+              fontColor: 'yellowgreen'
+          },
+          barPercentage: 0.9,
+          maxBarThickness: 60,
+          minBarThickness: 8
+      }],
+      xAxes: [{
+          ticks: {
+              fontSize: 14,
+              fontColor: 'yellowgreen',
+              max: datay[0],
+              min: 0,
+              stepSize: 1
+          },
+          barPercentage: 0.9,
+          maxBarThickness: 60,
+          minBarThickness: 8
+      }]
+  },
+  legend: {
+      display: true,
+      labels: {
+          fontColor: 'yellowgreen',
+          fontSize: 14
+      },
+  },
+  title: {
+      display: true,
+      text: `${title}`,
+      fontColor: 'yellowgreen',
+      fontSize: 18
+  },
+  /*Problema solucionado gracias a la fuente: https://stackoverflow.com/questions/38304357/is-it-possible-to-add-a-custom-font-to-chart-js*/
+// defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Baloo Da 2'"
+//}
+//});
+//}*
