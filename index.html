@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c5f7a233d9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Style/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
     <title>Steam table app</title>
@@ -13,11 +14,13 @@
 
     <div class="bodyGrid">
         <div class="titleAndNav">
+            <div class="navigation">
+            </div>
             <div class="title">
-                <h1>This is my Armstrong's steam table app.</h1>
+                <h1>STEAM TABLES</h1>
             </div>
             <div class="plotButton">
-                <label>Press to plot: <input type="button" id="myBtn" onclick="myFunction()" value="Plot"></label>
+                <label>Press to plot: <input type="button" id="myBtn" onclick="myFunction()" value="PLOT"></label>
             </div>
         </div>
         <div class="graph">
@@ -43,6 +46,14 @@
                     <option value="Gas Enthalpy">
                     <option value="Liquid Enthalpy">
                 </datalist>
+            </div>
+            <div class="boilerSizing"></div>
+        </div>
+        <div class="footer">
+            <div class="githubLogo">
+                <span style="font-size: 3em;">
+                    <a href="https://github.com/jaime385" class="linksFooter"><i class="fab fa-github"></i></a>
+                </span>
             </div>
         </div>
     </div>

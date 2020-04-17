@@ -146,54 +146,10 @@ function myFunction() {
                     display: true,
                     labels: {
                         //fontColor: 'yellowgreen',
-                        fontSize: 14
-                    }
+                        fontSize: 14,
+                    },
                 },
-            }
+            },
         });
     }
 }
-/*
-options: {
-  scales: {
-      yAxes: [{
-          ticks: {
-              beginAtZero: true,
-              fontSize: 14,
-              fontColor: 'yellowgreen'
-          },
-          barPercentage: 0.9,
-          maxBarThickness: 60,
-          minBarThickness: 8
-      }],
-      xAxes: [{
-          ticks: {
-              fontSize: 14,
-              fontColor: 'yellowgreen',
-              max: datay[0],
-              min: 0,
-              stepSize: 1
-          },
-          barPercentage: 0.9,
-          maxBarThickness: 60,
-          minBarThickness: 8
-      }]
-  },
-  legend: {
-      display: true,
-      labels: {
-          fontColor: 'yellowgreen',
-          fontSize: 14
-      },
-  },
-  title: {
-      display: true,
-      text: `${title}`,
-      fontColor: 'yellowgreen',
-      fontSize: 18
-  },
-  /*Problema solucionado gracias a la fuente: https://stackoverflow.com/questions/38304357/is-it-possible-to-add-a-custom-font-to-chart-js*/
-// defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Baloo Da 2'"
-//}
-//});
-//}*
