@@ -58,48 +58,49 @@ function myFunction() {
         let data = await getSteamData();
         //X axis.
         var dataListInput = document.getElementById('xAxisInput').value;
-        console.log(dataListInput);
-        if (dataListInput == 'Temperature') {
-            console.log('Temperature selected');
+        if (dataListInput == 'Temperature [°C]') {
             var xAxis = data.t;
         }
         if (dataListInput == 'Vaporization') {
-            console.log('Vaporization selected');
             var xAxis = data.V;
         }
-        if (dataListInput == 'Pressure') {
-            console.log('Pressure selected');
+        if (dataListInput == 'Pressure [Bar]') {
             var xAxis = data.p;
         }
-        if (dataListInput == 'Gas Enthalpy') {
-            console.log('Gas Enthalpy selected');
+        if (dataListInput == 'Gas Enthalpy [kJ/kg]') {
             var xAxis = data.EtG;
         }
-        if (dataListInput == 'Liquid Enthalpy') {
-            console.log('Liquid Enthalpy selected');
+        if (dataListInput == 'Liquid Enthalpy [kJ/kg]') {
             var xAxis = data.EtL;
+        }
+        if (dataListInput == 'Specific volume Gas [m3/kg]') {
+            var xAxis = data.svg;
+        }
+        if (dataListInput == 'Specific volume Liquid [m3/kg]') {
+            var xAxis = data.svl;
         }
         //Y axis
         var dataListInputY = document.getElementById('yAxisInput').value;
-        if (dataListInputY == 'Temperature') {
-            console.log('Y axis with temperature');
+        if (dataListInputY == 'Temperature [°C]') {
             var yAxis = data.t;
         }
-        if (dataListInputY == 'Pressure') {
-            console.log('Y axis with Pressure');
+        if (dataListInputY == 'Pressure [Bar]') {
             var yAxis = data.p;
         }
         if (dataListInputY == 'Vaporization') {
-            console.log('Y axis with vaporization');
             var yAxis = data.V;
         }
-        if (dataListInputY == 'Gas Enthalpy') {
-            console.log('Y axis with gas enthalpy');
+        if (dataListInputY == 'Gas Enthalpy [kJ/kg]') {
             var yAxis = data.EtG;
         }
-        if (dataListInputY == 'Liquid Enthalpy') {
-            console.log('Y axis Enthalpy selected');
+        if (dataListInputY == 'Liquid Enthalpy [kJ/kg]') {
             var yAxis = data.EtL;
+        }
+        if (dataListInputY == 'Specific volume Gas [m3/kg]') {
+            var yAxis = data.svg;
+        }
+        if (dataListInputY == 'Specific volume Liquid [m3/kg]') {
+            var yAxis = data.svl;
         }
         const ctx = document.getElementById('chart').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -108,7 +109,7 @@ function myFunction() {
                 labels: xAxis,
                 datasets: [
                     {
-                        label: 'Graph',
+                        label: `${document.getElementById('yAxisInput').value}`,
                         data: yAxis,
                         backgroundColor: 'rgba(16, 52, 165, 0)',
                         borderColor: 'rgba(16, 52, 165, 0.7)',
@@ -131,7 +132,7 @@ function myFunction() {
                     xAxes: [
                         {
                             ticks: {
-                                fontSize: 8,
+                                fontSize: 10,
                                 fontColor: 'yellowgreen',
                                 min: 0,
                                 stepSize: 1,
@@ -151,5 +152,19 @@ function myFunction() {
                 },
             },
         });
+    }
+}
+function calculoCaldera() {
+    const bhps = document.getElementById('bhps').value;
+    const hf = document.getElementById('Hf').value;
+    const hg = document.getElementById('Hg').value;
+    const hfw = document.getElementById('Hfw').value;
+    const bd = document.getElementById('BD').value;
+    if (bhps && hf && hg && hfw && bd) {
+        const delta_h = hg - hfw + bd * (hf - hfw);
+        document.getElementById('w').value = (33475 * bhps) / delta_h;
+    }
+    else {
+        alert('No hay sufientes parametros para el calculo.');
     }
 }

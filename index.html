@@ -1,63 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/c5f7a233d9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="Style/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-    <title>Steam table app</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/c5f7a233d9.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="Style/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+        <title>Steam table app</title>
+    </head>
 
-<body>
+    <body>
 
-    <div class="bodyGrid">
-        <div class="titleAndNav">
-            <div class="navigation">
+        <div class="bodyGrid">
+            <div class="titleAndNav">
+                <div class="navigation">
+                </div>
+                <div class="title">
+                    <!-- The video -->
+                    <h1>STEAM PLOTS</h1>
+                </div>
+                <div class="plotButton">
+                    <label>Press to plot: <input type="button" id="myBtn" onclick="myFunction()" value="PLOT"></label>
+                </div>
             </div>
-            <div class="title">
-                <h1>STEAM TABLES</h1>
+            <div class="graph">
+                <canvas id="chart"></canvas>
             </div>
-            <div class="plotButton">
-                <label>Press to plot: <input type="button" id="myBtn" onclick="myFunction()" value="PLOT"></label>
+            <div class="axisInputs">
+                <div class="xx">
+                    <label>"X" axis data: <input list="xAxis" id="xAxisInput"></label>
+                    <datalist id="xAxis">
+                        <option value="Pressure [Bar]">
+                        <option value="Temperature [°C]">
+                        <option value="Vaporization">
+                        <option value="Gas Enthalpy [kJ/kg]">
+                        <option value="Liquid Enthalpy [kJ/kg]">
+                        <option value="Specific volume Gas [m3/kg]">
+                        <option value="Specific volume Liquid [m3/kg]">
+                    </datalist>
+                </div>
+                <div class="yy">
+                    <label>"Y" axis data: <input list="yAxis" id="yAxisInput"></label>
+                    <datalist id="yAxis">
+                        <option value="Pressure [Bar]">
+                        <option value="Temperature [°C]">
+                        <option value="Vaporization">
+                        <option value="Gas Enthalpy [kJ/kg]">
+                        <option value="Liquid Enthalpy [kJ/kg]">
+                        <option value="Specific volume Gas [m3/kg]">
+                        <option value="Specific volume Liquid [m3/kg]">
+                    </datalist>
+                </div>
+                <div class="boilerSizing">
+                    <!--Here it goes the boiler calculator-->
+                    <div class="w">
+                        <h1 style="text-align: center;">Calculadora de producion de vapor</h1>
+                        <br>
+                        <label>W = Flujo de vapor, lb/h <input type="number" id="w" name="p2"></label>
+                    </div>
+                    <div class="bhp">
+                        <label>BHP <input type="number" id="bhps" name="p22"></label>
+                    </div>
+                    <div class="deltaH">
+                        <label>Delta H <input type="number" id="deltaH" name="p32"></label>
+                    </div>
+                    <div class="Hg">
+                        <label>hg = Entalpía de vapor saturado [BTU/lb] <input type="number" id="Hg" name="p34"></label>
+                    </div>
+                    <div class="Hf">
+                        <label>hf = Entalpía de líquido saturado, [BTU/lb] <input type="number" id="Hf"
+                                name="pfs34"></label>
+                    </div>
+                    <div class="Hfw">
+                        <label>hfw = Entalpía de agua de alimentación, BTU/lb <input type="number" id="Hfw"
+                                name="pfs334"></label>
+                    </div>
+                    <div class="BD">
+                        <label>BD = Fracción de purgas <input type="number" id="BD" name="pf2434"></label>
+                    </div>
+                    <div class="PresionAtmoferica">
+                        <label>Presión atmosférica @ [msnm] <input type="number" id="pAtm" name="dfa434"></label>
+                    </div>
+                    <div class="botonCalculo">
+                        <label>Presione para calcular: <input type="button" id="myBtnCaldera" onclick="calculoCaldera()"
+                                value="Calculo"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="githubLogo">
+                    <span style="font-size: 3em;">
+                        <a href="https://github.com/jaime385" class="linksFooter"><i class="fab fa-github"></i></a>
+                    </span>
+                </div>
             </div>
         </div>
-        <div class="graph">
-            <canvas id="chart"></canvas>
-        </div>
-        <div class="axisInputs">
-            <div class="xx">
-                <label>X axis data: <input list="xAxis" id="xAxisInput"></label>
-                <datalist id="xAxis">
-                    <option value="Pressure">
-                    <option value="Temperature">
-                    <option value="Vaporization">
-                    <option value="Gas Enthalpy">
-                    <option value="Liquid Enthalpy">
-                </datalist>
-            </div>
-            <div class="yy">
-                <label>Y axis data: <input list="yAxis" id="yAxisInput"></label>
-                <datalist id="yAxis">
-                    <option value="Pressure">
-                    <option value="Temperature">
-                    <option value="Vaporization">
-                    <option value="Gas Enthalpy">
-                    <option value="Liquid Enthalpy">
-                </datalist>
-            </div>
-            <div class="boilerSizing"></div>
-        </div>
-        <div class="footer">
-            <div class="githubLogo">
-                <span style="font-size: 3em;">
-                    <a href="https://github.com/jaime385" class="linksFooter"><i class="fab fa-github"></i></a>
-                </span>
-            </div>
-        </div>
-    </div>
-    <script src="Func/func.js"></script>
-</body>
+        <script src="Func/func.js"></script>
+    </body>
 
-</html>
+    </html>
