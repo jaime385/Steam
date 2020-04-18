@@ -146,7 +146,6 @@ function myFunction() {
                 legend: {
                     display: true,
                     labels: {
-                        //fontColor: 'yellowgreen',
                         fontSize: 14,
                     },
                 },
